@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <h1>Form</h1>
+            <form [formGroup]="formPerson" novalidate (ngSubmit)="submit(formPerson)">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="name" type="text"  formControlName="name" name="name">
+                            <label for="name">First Name</label>
+                            
+                            <!--<label for="name" data-success="right" *ngIf="formPerson.controls.name.valid"></label>
+                            <label for="name" data-error="wrong maxlength" *ngIf="formPerson.controls['name'].hasError('maxlength') && formPerson.controls['name'].touched"></label>
+                            <label for="name" data-error="wrong minlength" *ngIf="formPerson.controls['name'].hasError('minlength') && formPerson.controls['name'].touched"></label>
+                            <label for="name" data-error="wrong required" *ngIf="formPerson.controls['name'].hasError('required') && formPerson.controls['name'].touched"></label>-->
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="lastname" type="text" class="validate"  formControlName="lastname" name="lastname">
+                            <label for="name">Lastname</label>
+                            <!--<label for="lastname" data-success="right" *ngIf="formPerson.controls['name'].valid"></label>-->
+                            <!--<label for="lastname" data-error="wrong maxlength" *ngIf="!formPerson.controls['lastname'].hasError('maxlength') && formPerson.controls['lastname'].touched"></label>
+                            <label for="lastname" data-error="wrong minlength" *ngIf="!formPerson.controls['lastname'].hasError('minlength') && formPerson.controls['lastname'].touched"></label>
+                            <label for="lastname" data-error="wrong required" *ngIf="!formPerson.controls['lastname'].hasError('required') && formPerson.controls['lastname'].touched"></label>-->
+                        </div>
+                        <div class="input-field col s4">
+                            <button [disabled]="!formPerson.valid" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th data-field="name">Name</th>
+                        <th data-field="lastname">Lastname</th>
+                        <th data-field="action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let person of persons">
+                    <td>
+                        {{person.name}}
+                    </td>
+                    <td>{{person.lastname}}</td>
+                    <td><button type="button" class="btn waves-effect waves-light" [class.selected]="person === selectedPerson" (click)="onSelect(person)" >Delete</button></td>
+                    <td><button type="button" class="btn waves-effect waves-light" >Change</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
