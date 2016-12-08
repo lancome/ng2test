@@ -15,7 +15,8 @@ export class PersonComponent implements OnInit {
     model: Person = new Person("", "");
     formPerson: FormGroup;
     selectedPerson: Person;
-
+    isEdit: boolean = false;
+    index: number;
     constructor(private dataService: PersonDataService) { }
 
     ngOnInit() { 
@@ -29,10 +30,29 @@ export class PersonComponent implements OnInit {
     submit({value}: { value: Person }) {
         console.log(value);
         console.log(this.formPerson);
-        this.dataService.addPerson(value);
+        if(this.isEdit)
+        {
+            this.dataService.editPerson(value, this.index);
+            this.isEdit = false;
+            console.log(value);
+        }
+        else
+        {
+            this.dataService.addPerson(value);
+        }
+        this.formPerson.reset();
     }
     
-    onSelect(person: Person) {
+    delete(person: Person) {
         this.dataService.removePerson(person);
+    }
+
+    edit(person: Person) {
+        this.formPerson = new FormGroup({
+            name: new FormControl(person.name, [ Validators.required, Validators.minLength(2), Validators.maxLength(10) ]),
+            lastname: new FormControl(person.lastname, [ Validators.required, Validators.minLength(2), Validators.maxLength(10) ]),
+        });
+        this.isEdit = true;
+        this.index = this.persons.indexOf(person);
     }
 }

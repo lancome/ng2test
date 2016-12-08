@@ -7,16 +7,16 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">account_circle</i>
-                            <input id="name" type="text"  formControlName="name" name="name">
+                            <input id="name" type="text" formControlName="name" name="name">
                             <label for="name">First Name</label>
                             
-                            <!--<label for="name" data-success="right" *ngIf="formPerson.controls.name.valid"></label>
-                            <label for="name" data-error="wrong maxlength" *ngIf="formPerson.controls['name'].hasError('maxlength') && formPerson.controls['name'].touched"></label>
+                            <!--<label for="name" data-success="right" *ngIf="formPerson.controls.name.valid"></label>-->
+                            <!--<label for="name" data-error="wrong maxlength" *ngIf="formPerson.controls['name'].hasError('maxlength') && formPerson.controls['name'].touched"></label>
                             <label for="name" data-error="wrong minlength" *ngIf="formPerson.controls['name'].hasError('minlength') && formPerson.controls['name'].touched"></label>
                             <label for="name" data-error="wrong required" *ngIf="formPerson.controls['name'].hasError('required') && formPerson.controls['name'].touched"></label>-->
                         </div>
                         <div class="input-field col s4">
-                            <input id="lastname" type="text" class="validate"  formControlName="lastname" name="lastname">
+                            <input id="lastname" type="text" formControlName="lastname" name="lastname">
                             <label for="name">Lastname</label>
                             <!--<label for="lastname" data-success="right" *ngIf="formPerson.controls['name'].valid"></label>-->
                             <!--<label for="lastname" data-error="wrong maxlength" *ngIf="!formPerson.controls['lastname'].hasError('maxlength') && formPerson.controls['lastname'].touched"></label>
@@ -34,19 +34,17 @@
             <table class="responsive-table">
                 <thead>
                     <tr>
-                        <th data-field="name">Name</th>
-                        <th data-field="lastname">Lastname</th>
-                        <th data-field="action"></th>
+                        <th>Name</th>
+                        <th>Lastname</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let person of persons">
-                    <td>
-                        {{person.name}}
-                    </td>
+                    <td>{{person.name}}</td>
                     <td>{{person.lastname}}</td>
-                    <td><button type="button" class="btn waves-effect waves-light" [class.selected]="person === selectedPerson" (click)="onSelect(person)" >Delete</button></td>
-                    <td><button type="button" class="btn waves-effect waves-light" >Change</button></td>
+                    <td><button type="button" class="btn waves-effect waves-light" [class.selected]="person === selectedPerson" (click)="delete(person)" >Delete</button></td>
+                    <td><button type="button" class="btn waves-effect waves-light" [class.selected]="person === selectedPerson" (click)="edit(person)" >Change</button></td>
                 </tr>
                 </tbody>
             </table>
